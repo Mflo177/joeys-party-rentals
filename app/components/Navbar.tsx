@@ -13,7 +13,7 @@ export default function Navbar() {
           
           {/* Logo */}
           <Link href="/" className="text-2xl font-bold text-packers-gold">
-            Joey's Party Rentals
+            Joey&apos;s Party Rentals
           </Link>
 
           {/* Desktop Menu */}
