@@ -9,11 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        packers: {
+          green: '#203731',
+          gold: '#FFB612',
+          forest: '#024930',
+          light: '#2F5233',
+        },
       },
     },
   },
   plugins: [],
 };
+
 export default config;
