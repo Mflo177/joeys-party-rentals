@@ -3,8 +3,8 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Joey's Party Rentals - San Barnardino, CA",
-  description: "Tables and chairs party rentals in San Barnardino. Tables, chairs, tents and more. Get instant quotes online.",
+  title: "Joey's Party Rentals - San Bernardino, CA",
+  description: "Family-owned party rentals in San Bernardino. Tables, chairs, tents and more. Local service, no costly delivery fees. Get instant quotes online.",
 };
 
 export default function RootLayout({

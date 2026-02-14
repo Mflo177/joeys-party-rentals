@@ -10,22 +10,22 @@ type Item = {
 interface QuoteStore {
   items: Item[];
   date: string;
-  zip: string;
+  city: string;
   total: number;
   updateItem: (id: string, quantity: number) => void;
   setDate: (date: string) => void;
-  setZip: (zip: string) => void;
+  setCity: (city: string) => void;
   resetQuote: () => void;
 }
 
 export const useQuoteStore = create<QuoteStore>((set) => ({
   items: [
-    { id: 'tables', name: 'Tables (seats 8)', quantity: 0, price: 10 },
-    { id: 'chairs', name: 'Chairs', quantity: 0, price: 2 },
+    { id: 'tables', name: 'Tables (seats 8)', quantity: 0, price: 15 },
+    { id: 'chairs', name: 'Chairs', quantity: 0, price: 3 },
     { id: 'bouncehouse', name: 'Bounce House', quantity: 0, price: 150 },
   ],
   date: '',
-  zip: '',
+  city: '',
   total: 0,
 
   updateItem: (id, quantity) => {
@@ -39,16 +39,16 @@ export const useQuoteStore = create<QuoteStore>((set) => ({
   },
 
   setDate: (date) => set({ date }),
-  setZip: (zip) => set({ zip }),
+  setCity: (city) => set({ city }),
   
   resetQuote: () => set({
     items: [
-      { id: 'chairs', name: 'Chairs', quantity: 0, price: 3 },
       { id: 'tables', name: 'Tables (seats 8)', quantity: 0, price: 15 },
+      { id: 'chairs', name: 'Chairs', quantity: 0, price: 3 },
       { id: 'bouncehouse', name: 'Bounce House', quantity: 0, price: 150 },
     ],
     date: '',
-    zip: '',
+    city: '',
     total: 0,
   }),
 }));

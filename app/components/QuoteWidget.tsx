@@ -2,8 +2,21 @@
 
 import { useQuoteStore } from '@/store/quote';
 
+const CITIES = [
+  'San Bernardino',
+  'Riverside',
+  'Fontana',
+  'Rancho Cucamonga',
+  'Ontario',
+  'Colton',
+  'Rialto',
+  'Highland',
+  'Redlands',
+  'Other',
+];
+
 export default function QuoteWidget() {
-  const { items, updateItem } = useQuoteStore();
+  const { items, date, city, updateItem, setDate, setCity } = useQuoteStore();
 
   return (
     <section className="min-h-screen bg-gray-50 pt-8 pb-32 px-4">
@@ -24,7 +37,7 @@ export default function QuoteWidget() {
           
           {/* Dynamic Item Counters */}
           {items.map((item) => (
-            <div key={item.id} className="border-b 2 border-gray-400 pb-6 last:border-0">
+            <div key={item.id} className="border-b-2 border-gray-300 pb-6 last:border-0">
               <div className="flex justify-between items-center mb-3">
                 <div>
                   <h3 className="text-lg font-bold text-gray-900">{item.name}</h3>
@@ -33,7 +46,7 @@ export default function QuoteWidget() {
               </div>
 
               {/* Quick Add Buttons (Only for Chairs) */}
-          {item.id === 'chairs' && (
+              {item.id === 'chairs' && (
                 <div className="flex gap-2 mb-3">
                   <button
                     onClick={() => updateItem(item.id, item.quantity - 8)}
@@ -85,34 +98,55 @@ export default function QuoteWidget() {
           ))}
 
           {/* Event Date */}
-          <div className="pb-6 border-b border-gray-200">
+          <div className="pb-6 border-b-2 border-gray-300">
             <label className="block text-sm font-bold text-gray-900 mb-2">
-              📅 Event Date
+              📅 Event Date *
             </label>
             <input 
               type="date"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
+              required
+              min={new Date().toISOString().split('T')[0]}
               className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-packers-gold focus:outline-none text-lg"
             />
           </div>
 
-          {/* Zip Code */}
+          {/* City Dropdown */}
           <div>
             <label className="block text-sm font-bold text-gray-900 mb-2">
-              📍 Zip Code
+              📍 Event Location *
             </label>
-            <input 
-              type="text"
-              placeholder="92401"
-              maxLength={5}
-              className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-packers-gold focus:outline-none text-lg"
-            />
+            <select
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              required
+              className="w-full p-4 border-2 border-gray-200 rounded-xl focus:border-packers-gold focus:outline-none text-lg bg-white"
+            >
+              <option value="">Select a city...</option>
+              {CITIES.map((cityName) => (
+                <option key={cityName} value={cityName}>
+                  {cityName}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
 
         {/* Service Areas Note */}
-        <p className="text-center text-sm text-gray-500 mt-4">
-          Serving San Bernardino & surrounding areas
-        </p>
+     <div className="mt-8 text-center px-4">
+  <p className="text-sm font-semibold text-gray-700 mb-2">
+    📍 Proudly Serving
+  </p>
+  <p className="text-sm text-gray-600 leading-relaxed">
+    San Bernardino • Riverside • Fontana • 
+    Colton • Rialto • Highland • Redlands • Loma Linda • 
+    Bloomington • Muscoy
+  </p>
+  <p className="text-xs text-gray-500 mt-2">
+    + Surrounding Inland Empire communities
+  </p>
+</div>
       </div>
     </section>
   );
