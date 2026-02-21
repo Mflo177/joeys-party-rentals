@@ -5,6 +5,8 @@ type Item = {
   name: string;
   quantity: number;
   price: number;
+  image?: string;
+  enableQuickAdd?: boolean;
 };
 
 interface QuoteStore {
@@ -12,6 +14,7 @@ interface QuoteStore {
   date: string;
   city: string;
   total: number;
+  setItems: (items: Item[]) => void;
   updateItem: (id: string, quantity: number) => void;
   setDate: (date: string) => void;
   setCity: (city: string) => void;
@@ -19,14 +22,12 @@ interface QuoteStore {
 }
 
 export const useQuoteStore = create<QuoteStore>((set) => ({
-  items: [
-    { id: 'tables', name: 'Tables (seats 8)', quantity: 0, price: 15 },
-    { id: 'chairs', name: 'Chairs', quantity: 0, price: 3 },
-    { id: 'bouncehouse', name: 'Bounce House', quantity: 0, price: 150 },
-  ],
+  items: [],
   date: '',
   city: '',
   total: 0,
+
+  setItems: (items) => set({ items }),
 
   updateItem: (id, quantity) => {
     set((state) => {
@@ -42,11 +43,7 @@ export const useQuoteStore = create<QuoteStore>((set) => ({
   setCity: (city) => set({ city }),
   
   resetQuote: () => set({
-    items: [
-      { id: 'tables', name: 'Tables (seats 8)', quantity: 0, price: 15 },
-      { id: 'chairs', name: 'Chairs', quantity: 0, price: 3 },
-      { id: 'bouncehouse', name: 'Bounce House', quantity: 0, price: 150 },
-    ],
+    items: [],
     date: '',
     city: '',
     total: 0,
