@@ -1,3 +1,5 @@
-import service from './service'
+import {dataset, projectId} from '../env'
 
-export const schemaTypes = [service]
+const title = process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || "Joey's Party Rentals"
+
+export {dataset, projectId, title}
